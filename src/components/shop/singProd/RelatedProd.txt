@@ -1,0 +1,158 @@
+import React, { useState, useEffect } from 'react'
+import { Button } from '@/components/ui/button'
+import Image from 'next/image';
+import { client } from '@/sanity/lib/client';
+
+interface RelatedProductsProps {
+  currentProductId: string
+  initialDisplayCount?: number
+}
+
+type Product = {
+  _id: string
+  title: string
+  description: string
+  tags: string[]
+  imageUrl: string
+  price: number
+  discountPercentage?: number
+  isNew?: boolean
+  id: string
+}
+
+const RelatedProducts: React.FC<RelatedProductsProps> = ({
+  currentProductId,
+  initialDisplayCount = 4
+}) => {
+  const [relatedProducts, setRelatedProducts] = useState<Product[]>([])
+  const [displayCount, setDisplayCount] = useState(initialDisplayCount)
+  const [isLoading, setIsLoading] = useState(true)
+
+  // Simulate the fetch function (replace with actual data fetching)
+  const fetchRelatedProducts = async () => {
+    setIsLoading(true)
+    try {
+      // This is where you'd implement your actual data fetching logic
+      // Similar to the search component's query but focused on tag matching
+
+      const sampleProducts= await client.fetch(`*[_type == "product" && _id != $currentProductId] | order(_createdAt desc) {
+        _id,
+        title,
+        description,
+        tags,
+        imageUrl,
+        price,
+        discountPercentage
+      }`, { currentProductId })
+
+      // const sampleProducts: Product[] = [
+      //   {
+      //     _id: '1',
+      //     id: '1',
+      //     title: 'Related Product 1',
+      //     description: 'Sample description',
+      //     tags: ['furniture', 'modern'],
+      //     imageUrl: '/images/placeholder-1.jpg',
+      //     price: 299.99
+      //   },
+      //   // Add more sample products as needed
+      // ]
+      
+      setRelatedProducts(sampleProducts)
+    } catch (error) {
+      console.error('Error fetching related products:', error)
+      setRelatedProducts([])
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    fetchRelatedProducts()
+  }, [currentProductId])
+
+  const handleShowMore = () => {
+    setDisplayCount(prevCount => prevCount + 4)
+  }
+
+  if (isLoading) {
+    return (
+      <div className="text-center py-8 text-mygray" role="status">
+        Loading related products...
+      </div>
+    )
+  }
+
+  if (relatedProducts.length === 0) {
+    return null
+  }
+
+  return (
+    <section className='h-full flex py-10  items-center  justify-center border-b border-mygray  w-full bg-white'>
+       <div className='h-full md:h-[777px] w-full md:w-[1236px] flex flex-col items-center justify-between py-1 bg-white'>
+      <h2 className="text-2xl font-semibold mb-8 text-center">Related Products</h2>
+      {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"> */}
+      < div className=' h-full w-[90%] md:w-[1236px] md:px-0 px-12 grid grid-cols-1 md:grid-cols-4 gap-3 bg-white'>
+      {relatedProducts.slice(0, displayCount).map((product) => (
+
+        
+          <a 
+            href={`/shop/${product._id}`}
+            key={product._id}
+            className="group block"
+          >
+            <div className="relative pt-[100%] mb-4 overflow-hidden rounded-lg bg-gray-100">
+              <Image
+              width={285}
+              height={285}
+                src={product.imageUrl || '/placeholder.jpg'}
+                alt={product.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-105"
+              />
+            </div>
+            <h3 className="font-medium text-lg mb-1">{product.title}</h3>
+           
+            <div className="flex items-center gap-2">
+              <span className="font-semibold">${product.price.toFixed(2)}</span>
+              {product.discountPercentage && (
+                <span className="text-sm text-green-600">
+                  {product.discountPercentage}% off
+                </span>
+              )}
+            </div>
+            {product.tags && product.tags.length > 0 && (
+              <div className="flex gap-2 mt-2 flex-wrap">
+                {product.tags.map((tag, index) => (
+                  <span 
+                    key={index}
+                    className="text-xs bg-gray-100 px-2 py-1 rounded-full"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </a>
+        ))}
+ 
+
+      
+      </div>
+      
+      {relatedProducts.length > displayCount && (
+        <div className="text-center mt-8">
+          <Button 
+            onClick={handleShowMore}
+            variant="outline"
+            className="px-8"
+          >
+            Show More
+          </Button>
+        </div>
+      )}
+      </div>
+    </section>
+  )
+}
+
+export default RelatedProducts
