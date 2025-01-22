@@ -1,0 +1,16 @@
+Test Case ID,Test Case Description,Test Steps,Expected Result,Actual Result,Status,Severity Level,Assigned To,Remarks
+TC001,Verify product page loading,Open the product page and verify products displayed correctly.,Products are displayed as expected.,Products displayed as expected.,Passed,Low,-,No issues found.
+TC002,Test API error handling,Disconnect API and refresh page.,Error message shown.,Error message shown.,Passed,Medium,-,"Handled gracefully.
+"
+TC003,Check wishlist functionality,Add a product to the wishlist and verify its presence in the wishlist tab.,Product appears in wishlist.,Product appears in wishlist.,Passed,Medium,-,Works as intended.
+TC004,Verify search bar functionality,Enter various keywords and check the search results.,Relevant results appear based on keywords.,Relevant results appear as expected,Passed,High,-,Search working fine.
+TC005,Validate filters functionality,"Apply price, category, and availability filters on product listing.",Products displayed based on applied filters.,Filters working correctly.,Passed,High,-,Filters are accurate.
+TC006,Test loading skeleton,Open pages with a slow network to check loading skeleton.,Skeleton screen appears during loading.,Skeleton screen appears smoothly.,Passed,Low,-,Enhanced UX.
+TC007,Test SEO for home page,Run Lighthouse SEO audit on the home page.,SEO score above 90,SEO score: 96.,Passed,Low,-,Optimized for SEO.
+TC008,Verify wishlist edge case ,Add the same product twice to the wishlist.,Wishlist contains one instance of the product.,Wishlist shows one product instance only.,Passed,Medium,-,Deduplication works.
+TC009,Check filter reset functionality,Apply multiple filters and reset them.,Default product list displayed after reset.,Filters reset successfully.,Passed,Medium,-,Reset button functional.
+TC010,Validate search with special characters,Enter special characters in the search bar.,Error message or no results.,No results returned for invalid input.,Passed,Low,-,Properly handled.
+TC011,Validate loading skeleton consistency,Navigate between pages with slow network.,Skeleton appears during every load.,Skeleton appears uniformly.,Passed,Low,-,"Consistent experience.
+"
+TC012,Test cross-browser compatibility,"Open the website on Chrome, Firefox, Safari, and Edge.",Website renders and functions properly.,Website works seamlessly on all browsers.,Passed,High,-,Cross-browser testing complete.
+TC013,Validate accessibility (keyboard focus),Navigate through interactive elements using Tab key.,Focus indicators are visible.,Focus indicators present and functional.,Passed,Medium,-,WCAG compliance achieved.
