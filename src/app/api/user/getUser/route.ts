@@ -12,7 +12,8 @@ export const POST = async (req: NextRequest) => {
         let verifiedTokenData: JwtPayload;
         try {
             verifiedTokenData = jwt.verify(token, String(process.env.JWT_SECRET)) as JwtPayload;
-        } catch (error) {
+        }catch (error) {
+            console.error('Error verifying token:', error);
             return NextResponse.json({ message: "Invalid or Expired Token" }, { status: 401 });
         }
 
