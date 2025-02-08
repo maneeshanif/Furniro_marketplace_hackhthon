@@ -7,6 +7,7 @@ import Footer from "@/components/footer/Footer";
 import { Toaster } from "@/components/ui/toaster";
 import { CartProvider } from "@/context/CartContext";
 import { WishlistProvider } from "@/context/WishListContext";
+import { UserProvider } from "@/context/UserContext";
 
 
 
@@ -29,6 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <UserProvider>
     <html lang="en">
       <body
         className={`${poppins.className} antialiased`}
@@ -44,5 +46,6 @@ export default function RootLayout({
         </CartProvider>
       </body>
     </html>
+    </UserProvider>
   );
 }

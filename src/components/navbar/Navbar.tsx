@@ -7,6 +7,7 @@ import {  RxCross1} from "react-icons/rx";
 import { Cart } from '../Cart/CartSIdeBar';
 import { WishlistSide } from '../Wishlist/WishlistSide';
 import { SearchSheet } from './Searchbar';
+import ProfileAvatar from '../Profile/ProfileAvatar';
 // import data from '@/utils/ProductFetch'
 
 const Navbar = () => {
@@ -29,7 +30,9 @@ const Navbar = () => {
         </ul>
      </div>
      <div className='h-[24px] w-[290px] hidden md:flex justify-between '>
-     <span className='hover:bg-gray-200 rounded-md'><Image src='/images/profile.png' alt='logo' width={28} height={28} /> </span>
+     {/* <span  className='hover:bg-gray-200 rounded-md'><Link href ="/profile"><Image src='/images/profile.png' alt='logo' width={28} height={28} /></Link>  </span> */}
+   <ProfileAvatar />
+     {/* <span className='hover:bg-gray-200 rounded-md'><Image src='/images/profile.png' alt='logo' width={28} height={28} /> </span> */}
      <span className='hover:bg-gray-200 rounded-md'><SearchSheet /></span>
         {/* <span  className='hover:bg-gray-200 rounded-md'><Image src='/images/search.png' alt='logo' width={28} height={28} /></span> */}
         <span  className='hover:bg-gray-200 rounded-md'><WishlistSide  /></span>
@@ -56,7 +59,11 @@ const Navbar = () => {
      
           </ul>
           <div className=' flex mx-2 justify-between '>
-        <span  className='hover:bg-gray-200 rounded-md'><Image src='/images/profile.png' alt='logo' width={28} height={28} /> </span>
+          <ProfileAvatar />
+
+          {/* <span  className='hover:bg-gray-200 rounded-md'><Link href ="/profile"><Image src='/images/profile.png' alt='logo' width={28} height={28} /></Link>  </span> */}
+
+        {/* <span  className='hover:bg-gray-200 rounded-md'><Image src='/images/profile.png' alt='logo' width={28} height={28} /> </span> */}
         <span className='hover:bg-gray-200 rounded-md'><SearchSheet /></span>
 
         {/* <span  className='hover:bg-gray-200 rounded-md'><Image src='/images/search.png' alt='logo' width={28} height={28} /></span> */}
