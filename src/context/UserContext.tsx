@@ -79,6 +79,7 @@ import type React from "react"
 import { createContext, useState, useContext, useEffect } from "react"
 
 type User = {
+  _id: string
   name: string
   email: string
   image: string
@@ -97,6 +98,7 @@ type UserContextType = {
 }
 
 const defaultUser: User = {
+ _id: "",
   name: "",
   email: "",
   image: "",

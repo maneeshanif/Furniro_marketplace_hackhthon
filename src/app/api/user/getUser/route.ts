@@ -19,6 +19,7 @@ export const POST = async (req: NextRequest) => {
 
         const query = `
             *[_type == "user" && _id == $userId][0]{
+                _id,
                 name,
                 role,
                 image,

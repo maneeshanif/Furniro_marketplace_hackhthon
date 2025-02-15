@@ -18,3 +18,4 @@ export interface CartItem {
   | { type: 'UPDATE_QUANTITY'; payload: { id: string; quantity: number } }
   | { type: 'LOAD_CART'; payload: CartState }
   | { type: 'SET_CART'; payload: CartState }  // Add this action type
+  | {type :'CLEAR_CART'; }

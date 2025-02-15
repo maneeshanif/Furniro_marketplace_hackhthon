@@ -12,26 +12,28 @@ export const orders = defineType({
             title: "Customer"
         }),
         defineField({
-            name: "product",
+            name: "products",
+            title: 'Products',
             type: "array",
             of: [
                 {
                   type: 'object',
+
                   fields: [
                     {
                       name: 'product',
                       type: 'reference',
-                      to: [{ type: 'product' }]
+
+                      to: [{ type: 'product' }],
+                      
+                     
                     },
-                    {
-                      name: 'quantity',
-                      type: 'number'
-                    },
-                    {
-                      name: "size",
-                      title: "Size",
-                      type: "string"
-                    }
+             
+                    // {
+                    //   name: 'quantity',
+                    //   type: 'number'
+                    // },
+                
                   ]
                 }
               ]

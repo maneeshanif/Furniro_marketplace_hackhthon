@@ -1,11 +1,13 @@
+import OrdersPage from '@/components/Profile/Orders'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      orders
+      <OrdersPage />
     </div>
   )
 }
 
 export default page
+
