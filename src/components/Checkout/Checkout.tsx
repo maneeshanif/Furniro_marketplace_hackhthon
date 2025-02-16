@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import { useUser } from '@/context/UserContext';
 import { useCart } from '@/context/CartContext';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import CheckOutBanner from "./SubComponents/CheckOutBanner";
 import BillingDetail from "./SubComponents/BillingDetail";
 import OrderSummary from "./SubComponents/OrderSummary";
@@ -24,7 +24,7 @@ interface BillingDetailsType {
 }
 
 const Checkout = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const { user } = useUser();
   const { state, removeItem , clearCart } = useCart();
   const [billingDetails, setBillingDetails] = useState<BillingDetailsType | null>(null);
@@ -58,12 +58,16 @@ const Checkout = () => {
      console.log(user._id)
 
       const data = await response.json();
+      // console.log(data);
 
       if (data.success) {
         removeItem(data);
         clearCart();
+        window.location.href = data.redirectUrl;
         localStorage.removeItem("cart"); // Clear invalid data
-        router.push(`/account/orders`);
+        // router.push(`/account/orders`);
+        // router.push(`${data.checkoutUrl}`);
+        // router.push(`${data.checkoutUrl}`);
       } else {
         throw new Error(data.error);
       }
